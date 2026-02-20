@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }} — ICH BIN HIER JETZT</title>
+  {% if description %}<meta name="description" content="{{ description }}">{% endif %}
+  <meta name="author" content="Doris R. Mumenthaler">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="{{ title }} — ICH BIN HIER JETZT">
+  <meta property="og:description" content="{{ description or 'Traumasensibles Coaching und Jin Shin Jyutsu — Doris R. Mumenthaler, Dornach' }}">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="de_CH">
+  <meta property="og:site_name" content="ICH BIN HIER JETZT">
+  <meta property="og:image" content="https://ichbinhierjetzt-preview.netlify.app/images/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter / WhatsApp -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ title }} — ICH BIN HIER JETZT">
+  <meta name="twitter:description" content="{{ description or 'Traumasensibles Coaching und Jin Shin Jyutsu — Doris R. Mumenthaler, Dornach' }}">
+  <meta name="twitter:image" content="https://ichbinhierjetzt-preview.netlify.app/images/og-image.jpg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+  <link rel="stylesheet" href="/css/style.css">
+  <script>
+    // Theme sofort setzen um Flash zu vermeiden
+    (function(){
+      var t = localStorage.getItem('theme');
+      if (t) document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/" class="site-logo">ICH BIN HIER JETZT</a>
+      <div class="theme-switcher" aria-label="Farbpalette wählen">
+        <button class="theme-dot theme-dot--licht active" onclick="setTheme('')" title="Ecru / Rose / Sky"></button>
+        <button class="theme-dot theme-dot--rose" onclick="setTheme('rose')" title="Rose / Terra"></button>
+        <button class="theme-dot theme-dot--nacht" onclick="setTheme('nacht')" title="Flieder / Nacht"></button>
+      </div>
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Navigation öffnen">
+      <label for="nav-toggle" class="nav-toggle-label">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+      <nav class="main-nav">
+        <a href="/" {% if page.url == "/" %}class="active"{% endif %}>Willkommen</a>
+        <a href="/coaching/" {% if page.url == "/coaching/" %}class="active"{% endif %}>Coaching</a>
+        <a href="/jin-shin-jyutsu/" {% if page.url == "/jin-shin-jyutsu/" %}class="active"{% endif %}>Jin Shin Jyutsu</a>
+        <a href="/ueber/" {% if page.url == "/ueber/" %}class="active"{% endif %}>Über mich</a>
+        <a href="/kosten/" {% if page.url == "/kosten/" %}class="active"{% endif %}>Kosten</a>
+        <a href="/kontakt/" {% if page.url == "/kontakt/" %}class="active"{% endif %}>Kontakt</a>
+        <a href="/galerie/" {% if page.url == "/galerie/" %}class="active"{% endif %}>Galerie</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    {{ content | safe }}
+  </main>
+
+  <footer class="site-footer">
+    <p class="footer-copyright">Alle Fotos auf dieser Webseite stammen aus meinem Archiv und unterliegen dem Copyright® von Doris R. Mumenthaler</p>
+    <nav class="footer-nav">
+      <a href="/impressum/">Impressum</a>
+      <a href="/datenschutz/">Datenschutz</a>
+    </nav>
+    <p class="footer-copy">&copy; {{ "" | year }} Doris R. Mumenthaler</p>
+  </footer>
+  <script>
+    function setTheme(name) {
+      var html = document.documentElement;
+      if (name) {
+        html.setAttribute('data-theme', name);
+        localStorage.setItem('theme', name);
+      } else {
+        html.removeAttribute('data-theme');
+        localStorage.removeItem('theme');
+      }
+      // Active-Dot aktualisieren
+      document.querySelectorAll('.theme-dot').forEach(function(dot) {
+        dot.classList.remove('active');
+      });
+      var sel = name ? '.theme-dot--' + name : '.theme-dot--licht';
+      var active = document.querySelector(sel);
+      if (active) active.classList.add('active');
+    }
+    // Beim Laden den richtigen Dot aktivieren
+    (function() {
+      var t = localStorage.getItem('theme') || '';
+      var sel = t ? '.theme-dot--' + t : '.theme-dot--licht';
+      document.querySelectorAll('.theme-dot').forEach(function(d) { d.classList.remove('active'); });
+      var el = document.querySelector(sel);
+      if (el) el.classList.add('active');
+    })();
+
+    // Scroll-Reveal: sanftes Einblenden beim Scrollen
+    (function() {
+      if (!('IntersectionObserver' in window)) return;
+      var mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+      if (mq && mq.matches) return;
+
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll(
+        '.warm-section .section-inner, .portrait-intro, .content-divider, .poetic'
+      ).forEach(function(el) {
+        el.classList.add('reveal');
+        observer.observe(el);
+      });
+    })();
+  </script>
+</body>
+</html>

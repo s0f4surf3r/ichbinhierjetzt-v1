@@ -1,0 +1,19 @@
+---
+layout: base.njk
+---
+{% if hero_image %}
+<div class="page-hero">
+  <div class="page-hero-bg" style="background-image: url('{{ hero_image }}');"></div>
+  <div class="page-hero-content">
+    <h1 class="page-hero-title">{{ title }}</h1>
+  </div>
+</div>
+<article class="page-content page-content--with-hero">
+  {{ content | safe }}
+</article>
+{% else %}
+<article class="page-content">
+  <h1 class="page-title">{{ title }}</h1>
+  {{ content | safe }}
+</article>
+{% endif %}
