@@ -40,7 +40,7 @@
     })();
   </script>
 </head>
-<body>
+<body data-cms-path="{{ page.inputPath | replace('./', '') }}">
   <header class="site-header">
     <div class="header-inner">
       <a href="/" class="site-logo">ICH BIN HIER JETZT</a>
@@ -105,6 +105,79 @@
       var el = document.querySelector(sel);
       if (el) el.classList.add('active');
     })();
+  </script>
+  <script>
+  // perfectCMS — Inline-Edit
+  (function() {
+    var token = localStorage.getItem('cms_token');
+    if (!token) return;
+    var API = localStorage.getItem('cms_api_url') || 'https://perfectcmstm6mdmqs-doris-cms-api.functions.fnc.fr-par.scw.cloud';
+    var PAGE_PATH = document.body.getAttribute('data-cms-path');
+    if (!PAGE_PATH) return;
+
+    // Edit-Button
+    var btn = document.createElement('button');
+    btn.textContent = '✏ Bearbeiten';
+    btn.style.cssText = 'position:fixed;bottom:1.5rem;right:1.5rem;z-index:9000;background:var(--color-fire,#c9967f);color:#fff;border:none;padding:0.6rem 1.2rem;border-radius:8px;font-size:0.9rem;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,0.3);font-family:sans-serif;';
+    document.body.appendChild(btn);
+
+    var editing = false, saveBar = null;
+
+    btn.addEventListener('click', function() { editing ? cancel() : start(); });
+
+    function start() {
+      editing = true;
+      btn.textContent = '✕ Abbrechen';
+      document.querySelectorAll('[data-cms-field]').forEach(function(el) {
+        el.contentEditable = 'true';
+        el.style.outline = '2px dashed rgba(201,150,127,0.7)';
+        el.style.borderRadius = '4px';
+        el.style.padding = '2px';
+      });
+      saveBar = document.createElement('div');
+      saveBar.style.cssText = 'position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);z-index:9001;background:#1a1816;color:#f5f0eb;padding:0.75rem 1.5rem;border-radius:12px;display:flex;gap:1rem;align-items:center;box-shadow:0 8px 30px rgba(0,0,0,0.5);font-family:sans-serif;font-size:0.9rem;';
+      saveBar.innerHTML = '<span style="opacity:0.7;">Klick auf Text zum Bearbeiten</span><button id="cms-save" style="background:var(--color-fire,#c9967f);color:#fff;border:none;padding:0.5rem 1.2rem;border-radius:6px;cursor:pointer;font-size:0.9rem;">Speichern</button>';
+      document.body.appendChild(saveBar);
+      document.getElementById('cms-save').addEventListener('click', save);
+    }
+
+    function cancel() {
+      editing = false;
+      btn.textContent = '✏ Bearbeiten';
+      document.querySelectorAll('[data-cms-field]').forEach(function(el) {
+        el.contentEditable = 'false';
+        el.style.outline = '';
+        el.style.borderRadius = '';
+        el.style.padding = '';
+      });
+      if (saveBar) { saveBar.remove(); saveBar = null; }
+    }
+
+    function save() {
+      var fields = {};
+      document.querySelectorAll('[data-cms-field]').forEach(function(el) {
+        fields[el.getAttribute('data-cms-field')] = el.innerHTML;
+      });
+      var savebtn = document.getElementById('cms-save');
+      savebtn.textContent = '…'; savebtn.disabled = true;
+      fetch(API + '/api/inline', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+        body: JSON.stringify({ path: PAGE_PATH, fields: fields })
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(d) {
+        if (d.error) { alert('Fehler: ' + d.error); savebtn.textContent = 'Speichern'; savebtn.disabled = false; return; }
+        cancel();
+        var toast = document.createElement('div');
+        toast.textContent = '✓ Gespeichert — Seite wird gleich aktualisiert';
+        toast.style.cssText = 'position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:#4caf50;color:#fff;padding:0.6rem 1.5rem;border-radius:8px;z-index:9999;font-family:sans-serif;font-size:0.9rem;';
+        document.body.appendChild(toast);
+        setTimeout(function() { toast.remove(); }, 3000);
+      })
+      .catch(function() { savebtn.textContent = 'Speichern'; savebtn.disabled = false; alert('Netzwerkfehler'); });
+    }
+  })();
   </script>
 </body>
 </html>
