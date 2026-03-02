@@ -24,13 +24,6 @@
   --nav-divider:    rgba(58, 48, 40, 0.06);
 
   /* Elemente */
-  /* Immersive Sections (Doris-Stil: warme Flächen, weiße Schrift) */
-  --section-bg-1:   #e8b4a8;
-  --section-bg-2:   #d4908a;
-  --section-bg-alt: #89bfc9;
-  --section-text:   #ffffff;
-
-  /* Elemente */
   --el-wasser-bg:   #dce9f0;
   --el-wasser-name: #7aafc8;
   --el-feuer-bg:    #f2ddd8;
@@ -65,11 +58,6 @@
   --nav-mobile-bg:  rgba(42, 32, 64, 0.98);
   --nav-divider:    rgba(160, 140, 190, 0.12);
 
-  --section-bg-1:   #3a2860;
-  --section-bg-2:   #4a3578;
-  --section-bg-alt: #2a3548;
-  --section-text:   #f0ecf7;
-
   --el-wasser-bg:   #1e2038;
   --el-wasser-name: #80b8d0;
   --el-feuer-bg:    #302018;
@@ -98,11 +86,6 @@
   --nav-mobile-bg:  rgba(201, 150, 127, 0.98);
   --nav-divider:    rgba(27, 27, 45, 0.08);
 
-  --section-bg-1:   #e3aea6;
-  --section-bg-2:   #c99389;
-  --section-bg-alt: #89bfc9;
-  --section-text:   #ffffff;
-
   --el-wasser-bg:   #d8eef3;
   --el-wasser-name: #5a9aad;
   --el-feuer-bg:    #f5d5c5;
@@ -124,7 +107,6 @@ html {
   font-size: 100%;
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
-  overflow-x: hidden;
 }
 
 body {
@@ -573,7 +555,6 @@ main {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 3rem var(--gutter) 4rem;
-  overflow: visible;
 }
 
 .page-content--with-hero {
@@ -625,326 +606,52 @@ main {
   line-height: 1.8;
 }
 
-/* === Poetische Content-Seiten === */
-
-/* Portrait-Intro: organisch, fließend in der warm-section */
+/* === Portrait & Content Images === */
 .portrait-intro {
   display: flex;
-  gap: 3rem;
-  align-items: center;
-  padding: 1rem 0 2rem;
+  gap: 2.5rem;
+  align-items: flex-start;
+  margin-bottom: 2.5rem;
 }
 
 .portrait-img {
   width: 280px;
-  min-width: 220px;
-  border-radius: 20px;
-  box-shadow:
-    0 16px 56px rgba(0, 0, 0, 0.18),
-    0 0 0 1px rgba(255, 255, 255, 0.08);
-  transition: transform 0.6s ease;
+  min-width: 200px;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px var(--card-shadow);
+  object-fit: cover;
 }
 
-.portrait-img:hover {
-  transform: scale(1.02);
-}
-
-.portrait-poem {
+.portrait-text {
   flex: 1;
-}
-
-.portrait-poem p {
   font-family: var(--font-heading);
   font-style: italic;
-  font-size: 1.2rem;
-  line-height: 2.4;
-  color: var(--section-text);
-  text-align: left;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  font-size: 1.15rem;
+  line-height: 1.9;
+  color: var(--color-mid-dark);
+}
+
+.portrait-text p {
+  margin-bottom: 1rem;
+}
+
+.content-banner {
+  width: 100%;
+  border-radius: 12px;
+  margin: 2rem 0;
+  box-shadow: 0 2px 16px var(--card-shadow);
 }
 
 @media (max-width: 700px) {
   .portrait-intro {
     flex-direction: column;
+    align-items: center;
     text-align: center;
-    padding: 1rem 0 2rem;
   }
-  .portrait-img { width: 220px; min-width: unset; }
-  .portrait-poem p { text-align: center; font-size: 1.08rem; }
-}
-
-/* Bild-Trenner: Parallax, warmes Overlay, fließende Ränder */
-.content-divider {
-  width: 100%;
-  position: relative;
-  height: 340px;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-}
-
-.content-divider::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    var(--section-bg-1) 0%,
-    transparent 15%,
-    transparent 85%,
-    var(--section-bg-1) 100%
-  );
-  z-index: 2;
-}
-
-.content-divider::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--section-bg-1);
-  opacity: 0.2;
-  z-index: 1;
-}
-
-/* Divider der von bg-1 nach bg-2 übergeht */
-.content-divider--to-alt::after {
-  background: linear-gradient(
-    to bottom,
-    var(--section-bg-1) 0%,
-    transparent 15%,
-    transparent 85%,
-    var(--section-bg-2) 100%
-  );
-}
-
-/* Divider der von bg-2 nach bg-1 übergeht */
-.content-divider--from-alt::after {
-  background: linear-gradient(
-    to bottom,
-    var(--section-bg-2) 0%,
-    transparent 15%,
-    transparent 85%,
-    var(--section-bg-1) 100%
-  );
-}
-
-.content-divider--from-alt::before {
-  background: var(--section-bg-2);
-}
-
-/* Divider der von bg-alt nach bg-1 übergeht */
-.content-divider--from-sky::after {
-  background: linear-gradient(
-    to bottom,
-    var(--section-bg-alt) 0%,
-    transparent 15%,
-    transparent 85%,
-    var(--section-bg-1) 100%
-  );
-}
-
-.content-divider--from-sky::before {
-  background: var(--section-bg-alt);
-}
-
-/* Parallax deaktivieren auf Mobil (iOS-Kompatibilität) */
-@media (max-width: 700px) {
-  .content-divider {
-    background-attachment: scroll;
-    height: 220px;
+  .portrait-img {
+    width: 220px;
+    min-width: unset;
   }
-}
-
-/* Warme Section für poetische Text-Blöcke */
-.warm-section {
-  background: var(--section-bg-1);
-  color: var(--section-text);
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  margin-left: -50vw;
-  padding: 5rem var(--gutter);
-  overflow: hidden;
-}
-
-/* Subtiler innerer Lichtschein für Tiefenwirkung */
-.warm-section::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    ellipse at 50% 40%,
-    rgba(255, 255, 255, 0.06) 0%,
-    transparent 65%
-  );
-  pointer-events: none;
-}
-
-.warm-section--alt {
-  background: var(--section-bg-2);
-}
-
-.warm-section--sky {
-  background: var(--section-bg-alt);
-}
-
-.warm-section .section-inner {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  text-align: center;
-  position: relative;
-  z-index: 1;
-}
-
-.warm-section h2 {
-  color: var(--section-text);
-  font-family: var(--font-heading);
-  font-weight: 400;
-  font-style: italic;
-  letter-spacing: 0.04em;
-  font-size: clamp(1.3rem, 2.5vw, 1.6rem);
-  margin-bottom: 2.5rem;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
-}
-
-.warm-section p {
-  color: var(--section-text);
-  font-weight: 300;
-  font-size: 1.08rem;
-  line-height: 2.5;
-  margin-bottom: 1.4em;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-}
-
-.warm-section strong {
-  color: var(--section-text);
-  font-weight: 500;
-}
-
-.warm-section blockquote {
-  border: none;
-  background: rgba(255, 255, 255, 0.07);
-  padding: 2.5rem 3rem;
-  margin: 3rem auto;
-  max-width: 600px;
-  font-family: var(--font-heading);
-  font-style: italic;
-  font-size: 1.15rem;
-  line-height: 2.4;
-  color: var(--section-text);
-  opacity: 0.92;
-  border-radius: 20px;
-  border-left: 3px solid rgba(255, 255, 255, 0.15);
-}
-
-.warm-section a {
-  color: var(--section-text);
-  text-decoration-color: rgba(255,255,255,0.4);
-}
-
-/* Immersiver Seitentitel — sanft, einladend, nicht laut */
-.immersive-title {
-  font-family: var(--font-heading);
-  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-  font-weight: 400;
-  font-style: italic;
-  color: var(--section-text);
-  letter-spacing: 0.06em;
-  margin-bottom: 2.5rem;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-}
-
-/* "weiter zu..." Links — sanfte Einladungen */
-.warm-section .section-inner > p:last-child a {
-  display: inline-block;
-  padding: 0.6rem 0;
-  font-style: italic;
-  font-family: var(--font-heading);
-  text-decoration: none;
-  color: var(--section-text);
-  opacity: 0.7;
-  transition: opacity 0.3s;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-}
-
-.warm-section .section-inner > p:last-child a:hover {
-  opacity: 1;
-}
-
-/* Sternchen-Trenner — Doris' Atemzüge zwischen den Gedanken */
-.ornament {
-  text-align: center;
-  color: var(--color-ember);
-  font-size: 0.7rem;
-  letter-spacing: 0.8em;
-  margin: 3rem 0;
-  opacity: 0.4;
-}
-
-.warm-section .ornament {
-  color: var(--section-text);
-  opacity: 0.3;
-  font-size: 0.65rem;
-  letter-spacing: 1em;
-  margin: 3rem 0;
-}
-
-/* Poetischer Text (zentriert, atmend) */
-.poetic {
-  text-align: center;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 3rem 0;
-}
-
-.poetic p {
-  font-weight: 300;
-  font-size: 1.1rem;
-  line-height: 2.2;
-  margin-bottom: 1.4rem;
-}
-
-.poetic h2 {
-  font-weight: 400;
-  font-size: 1.4rem;
-  margin-bottom: 2rem;
-}
-
-/* Content-Bilder inline */
-.content-img {
-  border-radius: 16px;
-  box-shadow: 0 4px 24px var(--card-shadow);
-  max-width: 100%;
-  margin: 0 auto 2rem;
-  display: block;
-}
-
-.content-img--round {
-  border-radius: 50%;
-  width: 180px;
-  height: 180px;
-  object-fit: cover;
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.12),
-    0 0 0 3px rgba(255, 255, 255, 0.15);
-  transition: transform 0.5s ease, box-shadow 0.5s ease;
-}
-
-.content-img--round:hover {
-  transform: scale(1.06);
-  box-shadow:
-    0 12px 40px rgba(0, 0, 0, 0.18),
-    0 0 0 3px rgba(255, 255, 255, 0.25);
-}
-
-/* Round Images in warm sections: weißer Ring */
-.warm-section .content-img--round {
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.15),
-    0 0 0 4px rgba(255, 255, 255, 0.2);
-  margin-left: auto;
-  margin-right: auto;
 }
 
 /* === Contact specifics === */
@@ -996,6 +703,135 @@ main {
   font-family: var(--font-heading);
   color: var(--color-dark);
   font-weight: 600;
+}
+
+/* === Immersive Sections === */
+.warm-section {
+  background: var(--color-bg);
+  padding: 3.5rem 0;
+  text-align: center;
+}
+.warm-section--alt {
+  background: var(--color-bg-light);
+}
+.section-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+.section-inner p {
+  font-size: 1.05rem;
+  line-height: 2.2;
+  color: var(--color-dark);
+}
+.section-inner h2 {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  color: var(--color-ember);
+  margin-bottom: 1.5rem;
+}
+.section-inner blockquote {
+  border-left: 3px solid var(--color-fire);
+  padding: 1.2rem 1.8rem;
+  margin: 2rem auto;
+  max-width: 700px;
+  background: var(--blockquote-bg);
+  border-radius: 0 10px 10px 0;
+  text-align: left;
+  font-style: italic;
+}
+.content-divider {
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+}
+.content-divider::before,
+.content-divider::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 35%;
+  z-index: 1;
+}
+.content-divider::before {
+  top: 0;
+  background: linear-gradient(to bottom, var(--color-bg), transparent);
+}
+.content-divider::after {
+  bottom: 0;
+  background: linear-gradient(to top, var(--color-bg), transparent);
+}
+.content-divider--to-alt::after {
+  background: linear-gradient(to top, var(--color-bg-light), transparent);
+}
+.content-divider--from-alt::before {
+  background: linear-gradient(to bottom, var(--color-bg-light), transparent);
+}
+@media (max-width: 768px) {
+  .content-divider {
+    height: 200px;
+    background-attachment: scroll;
+  }
+}
+.ornament {
+  text-align: center;
+  font-size: 1rem;
+  color: var(--color-warm);
+  opacity: 0.55;
+  margin: 2.5rem 0;
+  letter-spacing: 0.5em;
+}
+.portrait-intro--immersive {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+  text-align: left;
+}
+.portrait-intro--immersive .portrait-img {
+  width: 260px;
+  min-width: 200px;
+  border-radius: 50%;
+  box-shadow: 0 4px 30px var(--card-shadow);
+}
+.portrait-intro--immersive .portrait-poem {
+  flex: 1;
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 1.1rem;
+  line-height: 2;
+  color: var(--color-mid-dark);
+}
+.portrait-intro--immersive .portrait-poem p {
+  font-family: var(--font-heading);
+  font-style: italic;
+  line-height: 2;
+}
+.weiter-link {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-style: italic;
+  color: var(--color-fire);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s;
+}
+.weiter-link:hover {
+  border-bottom-color: var(--color-fire);
+}
+@media (max-width: 700px) {
+  .portrait-intro--immersive {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .portrait-intro--immersive .portrait-img {
+    width: 200px;
+    min-width: unset;
+  }
 }
 
 /* === Gallery === */
@@ -1116,27 +952,8 @@ main {
 /* === Utility === */
 .text-center { text-align: center; }
 
-/* === Scroll-Reveal Animationen === */
+/* === Scroll Animations === */
 @media (prefers-reduced-motion: no-preference) {
-  .reveal {
-    opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-
-  .reveal.revealed {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Gestaffelte Verzögerung für Kinder-Elemente */
-  .reveal-children > *:nth-child(1) { transition-delay: 0s; }
-  .reveal-children > *:nth-child(2) { transition-delay: 0.1s; }
-  .reveal-children > *:nth-child(3) { transition-delay: 0.15s; }
-  .reveal-children > *:nth-child(4) { transition-delay: 0.2s; }
-
-  /* Fallback für CSS animation-timeline (Chrome) */
   .fade-in {
     opacity: 0;
     transform: translateY(20px);

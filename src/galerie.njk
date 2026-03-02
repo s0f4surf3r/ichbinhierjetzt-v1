@@ -4,13 +4,109 @@ title: Galerie
 description: Fotogalerie von Doris R. Mumenthaler — Natur, Blüten, Impressionen
 ---
 
-<div class="warm-section" style="padding-bottom: 2rem;">
-  <div class="section-inner">
-    <h1 class="immersive-title" style="margin-bottom: 0;">Galerie</h1>
+{# Hero-Banner #}
+<div class="page-hero page-hero--warm">
+  <div class="page-hero-bg" style="background-image: url('/images/gal-019.jpg');"></div>
+  <div class="page-hero-content">
+    <h1 class="page-hero-title">Galerie</h1>
   </div>
 </div>
 
-<div class="gallery-grid">
+{# Intro-Gedicht #}
+<div class="warm-section">
+  <div class="section-inner">
+    <h2>Erinnere Dich</h2>
+    <p>Du bist mehr, als Du denkst.<br>
+    In dir lebt die Erde,<br>
+    in dir ruht der Himmel.<br>
+    Zwischen Herz und Atem<br>
+    zeigt sich das Ganze.<br>
+    Werde still ...<br>
+    und erinnere dich.</p>
+    <div class="ornament">✦</div>
+  </div>
+</div>
+
+{# Elemente als Fullscreen-Poesie-Slides #}
+<div class="poetry-slide" style="background-image: url('/images/wasser.jpg');">
+  <div class="poetry-slide-overlay"></div>
+  <div class="poetry-slide-text">
+    <p class="poetry-slide-whisper">spüre und fühle</p>
+    <h2>Du bist Wasser</h2>
+    <p>... trinke ... fliesse ... sprudle ...<br>
+    ... hüpfe über Steine ...<br>
+    ... tauche auf und ab ...<br>
+    ... reinige … weine …<br>
+    ... erfrische dich… ... ströme …</p>
+  </div>
+</div>
+
+<div class="poetry-slide" style="background-image: url('/images/feuer.jpg');">
+  <div class="poetry-slide-overlay"></div>
+  <div class="poetry-slide-text">
+    <p class="poetry-slide-whisper">spüre und fühle</p>
+    <h2>Du bist Feuer</h2>
+    <p>... brenne ... lodere ... sprühe ...<br>
+    ... reinige ... entfalte ... verändere ...<br>
+    ... dehne dich aus ... verwandle ...<br>
+    ... leuchte ... wärme … ... tanze …</p>
+  </div>
+</div>
+
+<div class="poetry-slide" style="background-image: url('/images/luft.jpg');">
+  <div class="poetry-slide-overlay"></div>
+  <div class="poetry-slide-text">
+    <p class="poetry-slide-whisper">spüre und fühle</p>
+    <h2>Du bist Luft</h2>
+    <p>... atme ruhig ... fliege leicht ... steige auf …<br>
+    ... flüstere … … lass dich tragen ...<br>
+    ... fantasiere ... beobachte ...<br>
+    ... fokussiere ... ... kläre ... ... entscheide ...</p>
+  </div>
+</div>
+
+<div class="poetry-slide" style="background-image: url('/images/erde.jpg');">
+  <div class="poetry-slide-overlay"></div>
+  <div class="poetry-slide-text">
+    <p class="poetry-slide-whisper">spüre und fühle</p>
+    <h2>Du bist Erde</h2>
+    <p>... sei geerdet … vertraue … empfange ...<br>
+    … danke … ... schenke ... behüte ...<br>
+    ... pflege ... wachse ... ernte ...<br>
+    ... achte die Fülle ...<br>
+    ... heile ... beschütze … nähre dich ...</p>
+  </div>
+</div>
+
+<div class="poetry-slide" style="background-image: url('/images/bewusstsein.jpg');">
+  <div class="poetry-slide-overlay"></div>
+  <div class="poetry-slide-text">
+    <h2>Sei eins mit Deinem Bewusstsein</h2>
+    <p>... verbinde Dich mit Dir ... zentriere Dich ... im Herzen ...<br>
+    ... schau nach Innen ... lausche nach Aussen ... atme ruhig ...<br>
+    … geniesse das Sein … lass Dich inspirieren ...<br>
+    ... sei achtsam im Hier und Jetzt ...</p>
+    <p class="poetry-slide-accent">ICH BIN HIER JETZT</p>
+  </div>
+</div>
+
+<div class="poetry-slide" style="background-image: url('/images/closing.jpg');">
+  <div class="poetry-slide-overlay"></div>
+  <div class="poetry-slide-text">
+    <h2>Freue Dich,<br>sei lebendig und glücklich,<br>liebe</h2>
+    <p class="poetry-slide-accent">Es ist Dein Geburtsrecht.</p>
+  </div>
+</div>
+
+{# Übergang zum Foto-Grid #}
+<div class="warm-section" style="padding: 3rem 0 1.5rem;">
+  <div class="section-inner">
+    <div class="ornament">✦ ✦ ✦</div>
+  </div>
+</div>
+
+{# Masonry Foto-Grid #}
+<div class="gallery-masonry">
   <img src="/images/gal-001.jpg" alt="Galerie">
   <img src="/images/gal-002.jpg" alt="Galerie">
   <img src="/images/gal-003.jpg" alt="Galerie">
@@ -99,3 +195,77 @@ description: Fotogalerie von Doris R. Mumenthaler — Natur, Blüten, Impression
 
 <div class="ornament" style="text-align:center;margin:2rem 0;">✦ ✦ ✦</div>
 
+{# Lightbox #}
+<div class="lightbox" id="lightbox" role="dialog" aria-label="Bild vergrössern">
+  <button class="lightbox-close" aria-label="Schliessen">&times;</button>
+  <button class="lightbox-nav lightbox-nav--prev" aria-label="Vorheriges Bild">&#8249;</button>
+  <img class="lightbox-img" id="lightbox-img" src="" alt="">
+  <button class="lightbox-nav lightbox-nav--next" aria-label="Nächstes Bild">&#8250;</button>
+  <div class="lightbox-counter" id="lightbox-counter"></div>
+</div>
+
+<script>
+(function() {
+  var lb = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lightbox-img');
+  var lbCounter = document.getElementById('lightbox-counter');
+  var imgs = Array.from(document.querySelectorAll('.gallery-masonry img'));
+  var current = 0;
+
+  function show(i) {
+    current = (i + imgs.length) % imgs.length;
+    lbImg.classList.add('switching');
+    setTimeout(function() {
+      lbImg.src = imgs[current].src;
+      lbImg.alt = imgs[current].alt || '';
+      lbCounter.textContent = (current + 1) + ' / ' + imgs.length;
+      lbImg.classList.remove('switching');
+    }, 150);
+  }
+
+  function open(i) {
+    current = i;
+    lbImg.src = imgs[i].src;
+    lbImg.alt = imgs[i].alt || '';
+    lbCounter.textContent = (i + 1) + ' / ' + imgs.length;
+    lb.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close() {
+    lb.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  imgs.forEach(function(img, i) {
+    img.addEventListener('click', function() { open(i); });
+  });
+
+  lb.querySelector('.lightbox-close').addEventListener('click', close);
+  lb.querySelector('.lightbox-nav--prev').addEventListener('click', function() { show(current - 1); });
+  lb.querySelector('.lightbox-nav--next').addEventListener('click', function() { show(current + 1); });
+
+  lb.addEventListener('click', function(e) {
+    if (e.target === lb) close();
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (!lb.classList.contains('active')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') show(current - 1);
+    if (e.key === 'ArrowRight') show(current + 1);
+  });
+
+  var touchStartX = 0;
+  lb.addEventListener('touchstart', function(e) {
+    touchStartX = e.changedTouches[0].clientX;
+  }, { passive: true });
+  lb.addEventListener('touchend', function(e) {
+    var dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 50) {
+      if (dx > 0) show(current - 1);
+      else show(current + 1);
+    }
+  }, { passive: true });
+})();
+</script>

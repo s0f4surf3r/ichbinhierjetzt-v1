@@ -1,126 +1,91 @@
 ---
-layout: immersive.njk
+layout: base.njk
 title: Doris R. Mumenthaler
 description: Über Doris R. Mumenthaler — traumasensible Coachin, Jin Shin Jyutsu Praktikerin, Dornach
 ---
 
-{# Portrait + Gedicht: warm eingebettet, volle Breite #}
-<div class="warm-section" style="padding-bottom: 0;">
-  <div class="section-inner">
-    <div class="portrait-intro">
-      <img src="/images/doris-portrait.jpg" alt="Doris R. Mumenthaler" class="portrait-img">
-      <div class="portrait-poem">
-        <p>Ich freue mich über jede Begegnung mit Menschen,<br>
-        denn sie ist wie ein zarter Ruf der Seele.</p>
-        <p>Wundersam finde ich es,<br>
-        wenn sich ein Erleben von Herz zu Herz offenbart –<br>
-        wie ein stiller Tanz aus Licht und Verbundenheit,<br>
-        ein leiser Fluss, der unsere Seelen berührt.</p>
-        <p>Schenken und Empfangen<br>
-        ist für mich<br>
-        die Essenz des Miteinanders.</p>
-      </div>
-    </div>
+<style>
+  .ueber-portrait { text-align: center; padding: 3rem var(--gutter) 2rem; max-width: 700px; margin: 0 auto; }
+  .ueber-portrait img { width: 250px; height: 250px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 4px rgba(255,250,245,0.5), 0 0 30px rgba(201,150,127,0.35), 0 12px 40px var(--card-shadow); margin-bottom: 2rem; }
+  .ueber-portrait .poem { font-family: var(--font-heading); font-style: italic; font-size: 1.15rem; line-height: 2; color: var(--color-mid-dark); }
+  .ueber-portrait .poem p { margin-bottom: 1rem; }
+  .ueber-panorama { width: 100vw; margin-left: calc(-50vw + 50%); height: 300px; background-size: cover; background-position: center; position: relative; margin-top: 2rem; margin-bottom: 2rem; }
+  .ueber-panorama::before, .ueber-panorama::after { content: ''; position: absolute; left: 0; right: 0; height: 40%; z-index: 1; }
+  .ueber-panorama::before { top: 0; background: linear-gradient(to bottom, var(--color-bg-light), transparent); }
+  .ueber-panorama::after  { bottom: 0; background: linear-gradient(to top, var(--color-bg-light), transparent); }
+  .ueber-section-title { text-align: center; font-family: var(--font-heading); font-style: italic; font-weight: 400; font-size: clamp(1.4rem, 3vw, 1.8rem); color: var(--color-ember); margin: 2.5rem 0 2rem; }
+  .ueber-text { text-align: center; max-width: 700px; margin: 0 auto; padding: 0 var(--gutter); }
+  .ueber-text p { line-height: 2; margin-bottom: 1.2rem; }
+  .ueber-ornament { text-align: center; color: var(--color-warm); opacity: 0.45; letter-spacing: 0.5em; margin: 1.8rem 0; font-size: 0.9rem; }
+  .ueber-quote { max-width: 650px; margin: 2.5rem auto; padding: 1.8rem 2rem; background: var(--blockquote-bg); border-left: 3px solid var(--color-fire); border-radius: 0 12px 12px 0; font-style: italic; text-align: left; }
+  .ueber-quote p { line-height: 1.9; margin-bottom: 0.8rem; }
+  .ueber-quote p:last-child { margin-bottom: 0; }
+  .ueber-weiter { text-align: center; margin: 2.5rem 0 3rem; }
+  .ueber-weiter a { font-family: var(--font-heading); font-style: italic; color: var(--color-fire); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.3s; }
+  .ueber-weiter a:hover { border-bottom-color: var(--color-fire); }
+  @media (max-width: 768px) { .ueber-panorama { height: 200px; } .ueber-portrait img { width: 180px; height: 180px; } }
+</style>
+
+<div class="page-hero">
+  <div class="page-hero-bg" style="background-image: url('/images/ueber-banner1.jpg');"></div>
+  <div class="page-hero-content">
+    <h1 class="page-hero-title">Doris R. Mumenthaler</h1>
   </div>
 </div>
 
-{# Bergpanorama — warm überlagert, fließt aus der Section #}
-<div class="content-divider" style="background-image: url('/images/ueber-banner1.jpg');"></div>
-
-{# Da bin ich heute aktiv #}
-<div class="warm-section">
-  <div class="section-inner">
-    <h2>Da bin ich heute aktiv</h2>
-
-    <p>Coach NI Neurosystemische Integration®<br>
-    ganzheitlich-integrative Traumaarbeit und<br>
-    traumasensible Begleitung<br>
-    Weiterbildung bei Verena König</p>
-
-    <p>Weiterbildung THEKI® 1 und 2 bei Sandra Weber</p>
-
-    <p>Weiterbildung an der Polyvagal-Akademie Berlin</p>
-
-    <p>Weiterbildung Energieströmen<br>
-    Jin Shin Jyutsu Zentrum Berlin</p>
-
-    <p>Jahreszeiten und die Verbundenheit<br>
-    mit den Elementen und mit der Natur</p>
-
-    <p>Tai Chi, Tanz, Musik, Handpan, Theater</p>
-
-    <p>Dankbar für ein Leben mit meinem Partner<br>
-    und all den liebevollen Menschen<br>
-    mit ihren Anregungen, Impulsen und<br>
-    Begegnungsgeschenken.</p>
-
-    <p>... und froh, für die so wohltuenden<br>
-    «ventralvagalen Ruhepausen» ...</p>
+<div class="ueber-portrait">
+  <img src="/images/doris-portrait.jpg" alt="Doris R. Mumenthaler">
+  <div class="poem">
+    <p>Ich freue mich über jede Begegnung mit Menschen,<br>denn sie ist wie ein zarter Ruf der Seele.</p>
+    <p>Wundersam finde ich es,<br>wenn sich ein Erleben von Herz zu Herz offenbart –<br>wie ein stiller Tanz aus Licht und Verbundenheit,<br>ein leiser Fluss, der unsere Seelen berührt.</p>
+    <p>Schenken und Empfangen<br>ist für mich<br>die Essenz des Miteinanders.</p>
   </div>
 </div>
 
-{# Grüner Hügel — fließt von bg-1 nach bg-2 (alt) #}
-<div class="content-divider content-divider--to-alt" style="background-image: url('/images/ueber-banner2.jpg');"></div>
+<div class="ueber-ornament">✦ ✦ ✦</div>
 
-{# Da war ich früher aktiv #}
-<div class="warm-section warm-section--alt">
-  <div class="section-inner">
-    <h2>Da war ich früher aktiv</h2>
+<h2 class="ueber-section-title">Da bin ich heute aktiv</h2>
+<div class="ueber-text">
+  <p>Coach NI Neurosystemische Integration®<br>ganzheitlich-integrative Traumaarbeit und<br>traumasensible Begleitung<br>Weiterbildung bei Verena König</p>
+  <div class="ueber-ornament">✦</div>
+  <p>Weiterbildung THEKI® 1 und 2 bei Sandra Weber</p>
+  <div class="ueber-ornament">✦</div>
+  <p>Weiterbildung an der Polyvagal-Akademie Berlin</p>
+  <div class="ueber-ornament">✦</div>
+  <p>Weiterbildung Energieströmen<br>Jin Shin Jyutsu Zentrum Berlin</p>
+  <div class="ueber-ornament">✦</div>
+  <p>Jahreszeiten und die Verbundenheit<br>mit den Elementen und mit der Natur</p>
+  <div class="ueber-ornament">✦</div>
+  <p>Tai Chi, Tanz, Musik, Handpan, Theater</p>
+  <div class="ueber-ornament">✦ ✦</div>
+  <p>Dankbar für ein Leben mit meinem Partner<br>und all den liebevollen Menschen<br>mit ihren Anregungen, Impulsen und<br>Begegnungsgeschenken.</p>
+  <p>... und froh, für die so wohltuenden<br>«ventralvagalen Ruhepausen» ...</p>
+</div>
 
-    <p>geboren und aufgewachsen in der Region Basel<br>
-    mit zwei, um einige Jahre ältere Geschwister,<br>
-    pädagogische Ausbildung und langjähriges Arbeiten<br>
-    mit Schulklassen verschiedener Stufen,<br>
-    «Stief»Mutter zweier Kinder, die schon lange erwachsen sind</p>
+<div class="ueber-panorama" style="background-image: url('/images/ueber-banner2.jpg');"></div>
 
-    <div class="ornament">✦</div>
+<h2 class="ueber-section-title">Da war ich früher aktiv</h2>
+<div class="ueber-text">
+  <p>geboren und aufgewachsen in der Region Basel<br>mit zwei, um einige Jahre ältere Geschwister,<br>pädagogische Ausbildung und langjähriges Arbeiten<br>mit Schulklassen verschiedener Stufen,<br>«Stief»Mutter zweier Kinder, die schon lange erwachsen sind</p>
+  <div class="ueber-ornament">✦</div>
+  <p>auf der Suche nach meiner inneren Mitte</p>
+  <div class="ueber-ornament">✦</div>
+  <p>leiten von Wüstenreisen in der Sahara,<br>Mitgestaltung und Aufbau eines Centers<br>für Inspiration und Erholung<br>im Süden Portugals während zwei Jahren</p>
+  <div class="ueber-ornament">✦</div>
+  <p>vierjährige Tanzausbildung Musik und Bewegung,<br>Eurythmie, musikalische Früherziehung,<br>Theater mit Schulklassen, lebendiges Schulzimmer,<br>eigenes Beratungsbüro «schule-konkret»,<br>«LIZ - leben in Zuversicht»<br>Beratungsstelle für die Waldorfschulen der Region Basel,<br>Mitarbeit auf dem Bildungsdepartement</p>
+  <div class="ueber-ornament">✦</div>
+  <p>IFO Institut für Führungs- und Organisationsentwicklung,<br>Management — Muttenz, Basel-Land 1999 bis 2001</p>
+  <div class="ueber-ornament">✦</div>
+  <p>UNI Basel Institut für Soziologie NDS 2007 bis 2008<br>Interdisziplinäre Konfliktanalyse und Konfliktbewältigung</p>
+  <div class="ueber-ornament">✦</div>
+  <p>Workshop, Seminare und Weiterbildung für:<br>Pädagoginnen, Pädagogen und Schulbehörden,<br>Schulhauskultur, Eltern,<br>Konfliktanalyse und Konfliktbewältigung,<br>freie Mitarbeiterin am Institut für Konfliktmanagement und Mythodrama/ZH,<br>Gewaltprävention und Krisenintervention an Schulen und Organisationen,<br>Teamentwicklung, Supervision und Coaching,<br>Umgang mit Burnout,<br>friedvolle Kommunikation und stimmige Lösungsfindung</p>
+</div>
 
-    <p>auf der Suche nach meiner inneren Mitte</p>
+<div class="ueber-quote">
+  <p>In den Tiefen meiner eigenen Therapien entfalteten sich meine Geschichte wie ein Kaleidoskop aus Licht und Farben.</p>
+  <p>Ich bin dankbar für all die engagierten Menschen, deren vielfältige Methoden und Wege mir Türen zu neuen Sichtweisen öffneten und mir im Herzen wie ein leiser Wind wegweisend wurden.</p>
+</div>
 
-    <div class="ornament">✦</div>
-
-    <p>leiten von Wüstenreisen in der Sahara,<br>
-    Mitgestaltung und Aufbau eines Centers für Inspiration und Erholung<br>
-    im Süden Portugals während zwei Jahren</p>
-
-    <div class="ornament">✦</div>
-
-    <p>vierjährige Tanzausbildung Musik und Bewegung, Eurythmie,<br>
-    musikalische Früherziehung, Theater mit Schulklassen,<br>
-    lebendiges Schulzimmer,<br>
-    eigenes Beratungsbüro «schule-konkret»,<br>
-    «LIZ - leben in Zuversicht»<br>
-    Beratungsstelle für die Waldorfschulen der Region Basel,<br>
-    Mitarbeit auf dem Bildungsdepartement</p>
-
-    <div class="ornament">✦</div>
-
-    <p>IFO Institut für Führungs- und Organisationsentwicklung,<br>
-    Management — Muttenz, Basel-Land 1999 bis 2001</p>
-
-    <div class="ornament">✦</div>
-
-    <p>UNI Basel Institut für Soziologie NDS 2007 bis 2008<br>
-    Interdisziplinäre Konfliktanalyse und Konfliktbewältigung</p>
-
-    <div class="ornament">✦</div>
-
-    <p>Workshop, Seminare und Weiterbildung für:<br>
-    Pädagoginnen, Pädagogen und Schulbehörden, Schulhauskultur, Eltern,<br>
-    Konfliktanalyse und Konfliktbewältigung,<br>
-    freie Mitarbeiterin am Institut für Konfliktmanagement und Mythodrama/ZH,<br>
-    Gewaltprävention und Krisenintervention an Schulen und Organisationen,<br>
-    Teamentwicklung, Supervision und Coaching,<br>
-    Umgang mit Burnout,<br>
-    friedvolle Kommunikation und stimmige Lösungsfindung</p>
-
-    <blockquote>
-      <p>In den Tiefen meiner eigenen Therapien entfalteten sich meine Geschichte wie ein Kaleidoskop aus Licht und Farben.</p>
-      <p>Ich bin dankbar für all die engagierten Menschen, deren vielfältige Methoden und Wege mir Türen zu neuen Sichtweisen öffneten und mir im Herzen wie ein leiser Wind wegweisend wurden.</p>
-    </blockquote>
-
-    <div class="ornament">✦ ✦ ✦</div>
-
-    <p><a href="/kosten/">weiter zu energetischer Ausgleich/Kosten →</a></p>
-  </div>
+<div class="ueber-weiter">
+  <a href="/kosten/">weiter zu energetischer Ausgleich/Kosten →</a>
 </div>
