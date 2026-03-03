@@ -142,6 +142,15 @@
     btn.style.cssText = 'position:fixed;bottom:1.5rem;right:1.5rem;z-index:9000;background:var(--color-fire,#c9967f);color:#fff;border:none;padding:0.6rem 1.2rem;border-radius:8px;font-size:0.9rem;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,0.3);font-family:sans-serif;';
     document.body.appendChild(btn);
 
+    var logoutBtn = document.createElement('button');
+    logoutBtn.textContent = '× Bearbeitung beenden';
+    logoutBtn.style.cssText = 'position:fixed;bottom:1.5rem;right:10.5rem;z-index:9000;background:transparent;color:var(--color-mid,#999);border:1px solid rgba(150,150,150,0.35);padding:0.6rem 1.2rem;border-radius:8px;font-size:0.9rem;cursor:pointer;font-family:sans-serif;';
+    logoutBtn.addEventListener('click', function() {
+      localStorage.removeItem('cms_token');
+      location.reload();
+    });
+    document.body.appendChild(logoutBtn);
+
     var editing = false, saveBar = null;
 
     btn.addEventListener('click', function() { editing ? cancel() : start(); });
