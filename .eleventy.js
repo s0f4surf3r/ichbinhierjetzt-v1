@@ -18,6 +18,11 @@ module.exports = function (eleventyConfig) {
     return new Date().getFullYear();
   });
 
+  // Texte Collection
+  eleventyConfig.addCollection("texte", function(collectionApi) {
+    return collectionApi.getFilteredByGlob("src/texte/*.md").sort((a, b) => b.date - a.date);
+  });
+
   // Passthrough
   eleventyConfig.addPassthroughCopy("src/css");
   eleventyConfig.addPassthroughCopy("src/images");
