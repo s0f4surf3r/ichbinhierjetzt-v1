@@ -11,7 +11,7 @@ Es hat sich etwas verrückt in mir,tief drin.
 
 Ich habe es gespürt. Mehrmals.
 
-Es war wie Sterbenund dannneugeboren.
+Es war wie Sterbenund dann neugeboren.
 
 Und danach:
 
