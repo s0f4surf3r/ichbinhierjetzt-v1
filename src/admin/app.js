@@ -76,6 +76,8 @@
       if (tuiEditor) { tuiEditor.destroy(); tuiEditor = null; }
       const vp = $('#versions-panel');
       if (vp) vp.hidden = true;
+      const mt = $('#mode-toggle');
+      if (mt) mt.hidden = true;
     }
   }
 
@@ -416,6 +418,11 @@
     // Change-Listener für Autosave
     tuiEditor.on('change', onContentChange);
 
+    // Mode-Toggle einblenden + initialen Zustand setzen
+    const mt = $('#mode-toggle');
+    if (mt) mt.hidden = false;
+    syncModeToggle('wysiwyg');
+
     // Alt+F3 Keyboard Shortcut
     container.addEventListener('keydown', (e) => {
       if (e.altKey && e.key === 'F3') {
@@ -434,18 +441,28 @@
     }
   });
 
+  function syncModeToggle(mode) {
+    const wBtn = $('#mode-wysiwyg');
+    const mBtn = $('#mode-markdown');
+    if (wBtn) wBtn.classList.toggle('active', mode === 'wysiwyg');
+    if (mBtn) mBtn.classList.toggle('active', mode === 'markdown');
+    const rcBtn = document.querySelector('.reveal-codes-btn');
+    if (rcBtn) rcBtn.classList.toggle('active', mode === 'markdown');
+  }
+
   function toggleRevealCodes() {
     if (!tuiEditor) return;
-    const current = tuiEditor.isWysiwygMode() ? 'wysiwyg' : 'markdown';
-    const next = current === 'wysiwyg' ? 'markdown' : 'wysiwyg';
+    const next = tuiEditor.isWysiwygMode() ? 'markdown' : 'wysiwyg';
     tuiEditor.changeMode(next);
-
-    // Button-Status aktualisieren
-    const btn = document.querySelector('.reveal-codes-btn');
-    if (btn) {
-      btn.classList.toggle('active', next === 'markdown');
-    }
+    syncModeToggle(next);
   }
+
+  $('#mode-wysiwyg').addEventListener('click', () => {
+    if (tuiEditor && !tuiEditor.isWysiwygMode()) toggleRevealCodes();
+  });
+  $('#mode-markdown').addEventListener('click', () => {
+    if (tuiEditor && tuiEditor.isWysiwygMode()) toggleRevealCodes();
+  });
 
   const MAX_UPLOAD_MB = 5;
   const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/svg+xml'];

@@ -7,6 +7,12 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css">
   <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/theme/toastui-editor-dark.min.css">
+  <style>
+    .mode-toggle { display:flex; gap:0; margin-bottom:0.5rem; background:var(--bg-secondary,#1e1c1a); border-radius:6px; padding:3px; width:fit-content; }
+    .mode-btn { background:transparent; border:none; padding:0.3rem 1rem; border-radius:4px; cursor:pointer; font-size:0.82rem; color:var(--text-secondary,#888); font-family:sans-serif; transition:all 0.15s; }
+    .mode-btn.active { background:var(--bg-card,#2a2826); color:var(--text-primary,#f5f0eb); box-shadow:0 1px 3px rgba(0,0,0,0.3); }
+    .mode-btn:hover:not(.active) { color:var(--text-primary,#f5f0eb); }
+  </style>
 </head>
 <body>
   <div id="app">
@@ -142,6 +148,12 @@
 
       <!-- Dynamische Abschnitt-Felder (für Layout-Seiten) -->
       <div id="fields-sections" class="fields-sections" hidden></div>
+
+      <!-- Modus-Toggle -->
+      <div class="mode-toggle" id="mode-toggle" hidden>
+        <button type="button" class="mode-btn active" id="mode-wysiwyg">Visuell</button>
+        <button type="button" class="mode-btn" id="mode-markdown">Markdown</button>
+      </div>
 
       <!-- WYSIWYG Editor (Toast UI) -->
       <div id="editor-container" class="editor-container" role="region" aria-label="Inhaltseditor"></div>
