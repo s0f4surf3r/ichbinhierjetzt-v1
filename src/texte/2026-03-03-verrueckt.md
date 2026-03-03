@@ -9,7 +9,7 @@ excerpt: An dem Morgen, an dem ich etwas zur Welt gebracht habe und mich an eine
 ---
 Es hat sich etwas verrückt in mir,tief drin.
 
-Ich habe es gespürt.Mehrmals.
+Ich habe es gespürt. Mehrmals.
 
 Es war wie Sterbenund dannneugeboren.
 
