@@ -518,6 +518,9 @@ select {
   font-weight: 600;
   padding: 0 8px;
   min-height: 28px;
+  vertical-align: middle;
+  display: inline-flex;
+  align-items: center;
   background: transparent;
   border: 1px solid var(--border);
   border-radius: 4px;
