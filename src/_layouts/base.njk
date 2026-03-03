@@ -107,6 +107,26 @@
     })();
   </script>
   <script>
+  // perfectCMS — Magic Link Auto-Login
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    var magic = params.get('magic');
+    if (!magic) return;
+    var API = localStorage.getItem('cms_api_url') || 'https://perfectcmstm6mdmqs-doris-cms-api.functions.fnc.fr-par.scw.cloud';
+    fetch(API + '/api/login/magic', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token: magic })
+    }).then(function(r) { return r.json(); }).then(function(d) {
+      if (d.token) {
+        localStorage.setItem('cms_token', d.token);
+        history.replaceState({}, '', window.location.pathname);
+        location.reload();
+      }
+    }).catch(function() {});
+  })();
+  </script>
+  <script>
   // perfectCMS — Inline-Edit
   (function() {
     var token = localStorage.getItem('cms_token');

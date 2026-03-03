@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Farbpalette – Doris v2</title>
+<style>
+  :root {
+    --color-bg:       #f5f0e8;
+    --color-ecru:     #ede4d4;
+    --color-blush:    #e8b4a8;
+    --color-rose:     #d4706a;
+    --color-sky:      #b8d4e8;
+    --color-blue:     #7aafc8;
+    --color-yellow:   #f0d060;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+    background: var(--color-bg);
+    color: #3a3028;
+    padding: 48px 40px;
+    min-height: 100vh;
+  }
+
+  h1 {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #a89880;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-size: 12px;
+    color: #b8a898;
+    margin-bottom: 48px;
+    letter-spacing: 0.5px;
+  }
+
+  .section {
+    margin-bottom: 52px;
+  }
+
+  .section h2 {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #a89880;
+    margin-bottom: 20px;
+  }
+
+  /* SWATCHES */
+  .swatches {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .swatch {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 110px;
+  }
+
+  .swatch-color {
+    width: 110px;
+    height: 80px;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+
+  .swatch-hex {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #3a3028;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .swatch-label {
+    font-size: 11px;
+    color: #a89880;
+    letter-spacing: 0.3px;
+  }
+
+  /* GRADIENT STRIP */
+  .gradient-strip {
+    height: 52px;
+    border-radius: 14px;
+    background: linear-gradient(
+      to right,
+      #f0d060,
+      #e8b4a8,
+      #d4706a,
+      #ede4d4,
+      #b8d4e8,
+      #7aafc8
+    );
+    max-width: 640px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  }
+
+  /* DEMO CARD */
+  .demo {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 520px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+  }
+
+  .demo .tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--color-blue);
+    display: block;
+    margin-bottom: 14px;
+  }
+
+  .demo h3 {
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    color: #a89880;
+    margin-bottom: 6px;
+  }
+
+  .demo .headline {
+    font-size: 32px;
+    font-weight: 300;
+    color: #3a3028;
+    margin-bottom: 16px;
+    line-height: 1.25;
+    letter-spacing: -0.3px;
+  }
+
+  .demo .headline em {
+    color: var(--color-rose);
+    font-style: normal;
+  }
+
+  .demo p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #7a6e65;
+    margin-bottom: 28px;
+    max-width: 380px;
+  }
+
+  .btn-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .btn-primary {
+    background: var(--color-rose);
+    color: white;
+    padding: 11px 24px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-block;
+    letter-spacing: 0.2px;
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--color-blue);
+    padding: 11px 24px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 400;
+    text-decoration: none;
+    display: inline-block;
+    border: 1px solid var(--color-sky);
+  }
+
+  /* TYPO SAMPLE */
+  .typo {
+    background: var(--color-ecru);
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 520px;
+  }
+
+  .typo .display {
+    font-size: 38px;
+    font-weight: 200;
+    letter-spacing: -0.5px;
+    color: #3a3028;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .typo .display span {
+    color: var(--color-yellow);
+    background: #3a3028;
+    padding: 0 8px;
+    border-radius: 4px;
+  }
+
+  .typo .body-text {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #7a6e65;
+    max-width: 360px;
+  }
+
+  /* CSS BLOCK */
+  .css-block {
+    background: #2a2420;
+    border-radius: 14px;
+    padding: 28px 32px;
+    font-size: 13px;
+    font-family: 'SF Mono', 'Fira Mono', 'Menlo', monospace;
+    line-height: 2;
+    color: #a89880;
+    max-width: 460px;
+  }
+
+  .css-block .prop { color: var(--color-sky); }
+  .css-block .val  { color: var(--color-yellow); }
+  .css-block .key  { color: #a89880; }
+</style>
+</head>
+<body>
+
+<h1>Farbpalette · Doris</h1>
+<p class="subtitle">Gelb · Rosa/Rötlich · Helle Blautöne · Ecru/Hellbeige</p>
+
+<!-- SWATCHES -->
+<div class="section">
+  <h2>Farben</h2>
+  <div class="swatches">
+    <div class="swatch">
+      <div class="swatch-color" style="background: #f0d060;"></div>
+      <div class="swatch-hex">#f0d060</div>
+      <div class="swatch-label">Gelb / Licht</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background: #e8b4a8;"></div>
+      <div class="swatch-hex">#e8b4a8</div>
+      <div class="swatch-label">Blush / Rosa hell</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background: #d4706a;"></div>
+      <div class="swatch-hex">#d4706a</div>
+      <div class="swatch-label">Rose / Rötlich</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background: #ede4d4; border: 1px solid #d8cfc0;"></div>
+      <div class="swatch-hex">#ede4d4</div>
+      <div class="swatch-label">Ecru / Warm</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background: #f5f0e8; border: 1px solid #e0d8cc;"></div>
+      <div class="swatch-hex">#f5f0e8</div>
+      <div class="swatch-label">Hellbeige / BG</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background: #b8d4e8;"></div>
+      <div class="swatch-hex">#b8d4e8</div>
+      <div class="swatch-label">Sky / Blau hell</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background: #7aafc8;"></div>
+      <div class="swatch-hex">#7aafc8</div>
+      <div class="swatch-label">Blue / Akzent</div>
+    </div>
+  </div>
+</div>
+
+<!-- GRADIENT -->
+<div class="section">
+  <h2>Verlauf</h2>
+  <div class="gradient-strip"></div>
+</div>
+
+<!-- DEMO CARD -->
+<div class="section">
+  <h2>Anwendungsbeispiel</h2>
+  <div class="demo">
+    <span class="tag">Traumasensibles Coaching</span>
+    <h3>spüre und fühle</h3>
+    <div class="headline">Du bist <em>Feuer</em><br>und Stille.</div>
+    <p>Begleitung für Menschen, die sich selbst wieder begegnen möchten – mit Wärme, Klarheit und echtem Kontakt.</p>
+    <div class="btn-row">
+      <a href="#" class="btn-primary">Mehr erfahren</a>
+      <a href="#" class="btn-secondary">Kontakt</a>
+    </div>
+  </div>
+</div>
+
+<!-- TYPO SAMPLE -->
+<div class="section">
+  <h2>Typography Sample</h2>
+  <div class="typo">
+    <div class="display">Ich bin<br><span>hier</span><br>jetzt.</div>
+    <p class="body-text">Jin Shin Jyutsu · Coaching · Energetische Begleitung — für den Moment, in dem du ankommst.</p>
+  </div>
+</div>
+
+<!-- CSS VARIABLES -->
+<div class="section">
+  <h2>CSS Variables</h2>
+  <div class="css-block">
+    <span class="key">:root</span> {<br>
+    &nbsp;&nbsp;<span class="prop">--color-yellow:</span>&nbsp;&nbsp;&nbsp;<span class="val">#f0d060</span>;<br>
+    &nbsp;&nbsp;<span class="prop">--color-blush:</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="val">#e8b4a8</span>;<br>
+    &nbsp;&nbsp;<span class="prop">--color-rose:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="val">#d4706a</span>;<br>
+    &nbsp;&nbsp;<span class="prop">--color-ecru:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="val">#ede4d4</span>;<br>
+    &nbsp;&nbsp;<span class="prop">--color-bg:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="val">#f5f0e8</span>;<br>
+    &nbsp;&nbsp;<span class="prop">--color-sky:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="val">#b8d4e8</span>;<br>
+    &nbsp;&nbsp;<span class="prop">--color-blue:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="val">#7aafc8</span>;<br>
+    }
+  </div>
+</div>
+
+</body>
+</html>

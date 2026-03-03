@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Farbpalette – ichbinhierjetzt.ch</title>
+<style>
+  :root {
+    --color-bg:        #c9967f;
+    --color-bg-light:  #f3bdbd;
+    --color-dark:      #1b1b2d;
+    --color-mid-dark:  #3f3f3f;
+    --color-fire:      #e7794d;
+    --color-ember:     #bb4d21;
+    --color-text:      #fff3f3;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+    background: var(--color-bg);
+    color: var(--color-text);
+    padding: 48px 40px;
+    min-height: 100vh;
+  }
+
+  h1 {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #a07060;
+    margin-bottom: 48px;
+  }
+
+  .section {
+    margin-bottom: 56px;
+  }
+
+  .section h2 {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #a07060;
+    margin-bottom: 20px;
+  }
+
+  /* SWATCHES */
+  .swatches {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .swatch {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 110px;
+  }
+
+  .swatch-color {
+    width: 110px;
+    height: 80px;
+    border-radius: 12px;
+  }
+
+  .swatch-hex {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--color-text);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .swatch-label {
+    font-size: 11px;
+    color: #a07060;
+    letter-spacing: 0.5px;
+  }
+
+  /* GRADIENT STRIP */
+  .gradient-strip {
+    height: 48px;
+    border-radius: 12px;
+    background: linear-gradient(
+      to right,
+      #1b1b2d,
+      #3f3f3f,
+      #bb4d21,
+      #e7794d,
+      #c9967f,
+      #f3bdbd,
+      #fff3f3
+    );
+    max-width: 640px;
+  }
+
+  /* DEMO CARD */
+  .demo {
+    background: var(--color-bg-light);
+    border-radius: 20px;
+    padding: 36px 40px;
+    max-width: 520px;
+  }
+
+  .demo .tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--color-ember);
+    display: block;
+    margin-bottom: 14px;
+  }
+
+  .demo h3 {
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    color: #3f3f3f;
+    margin-bottom: 8px;
+  }
+
+  .demo .headline {
+    font-size: 34px;
+    font-weight: 400;
+    color: #3f3f3f;
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+
+  .demo p {
+    font-size: 13px;
+    line-height: 1.8;
+    color: #7a5548;
+    margin-bottom: 24px;
+    max-width: 380px;
+  }
+
+  .btn-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--color-dark);
+    color: var(--color-text);
+    padding: 10px 22px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: #7a5548;
+    padding: 10px 22px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 400;
+    text-decoration: none;
+    display: inline-block;
+    border: 1px solid #c9967f;
+  }
+
+  /* CSS BLOCK */
+  .css-block {
+    background: var(--color-dark);
+    border-radius: 14px;
+    padding: 28px 32px;
+    font-size: 13px;
+    font-family: 'SF Mono', 'Fira Mono', 'Menlo', monospace;
+    line-height: 2;
+    color: #8888aa;
+    max-width: 460px;
+  }
+
+  .css-block .prop { color: #f3bdbd; }
+  .css-block .val  { color: #e7794d; }
+  .css-block .key  { color: #8888aa; }
+</style>
+</head>
+<body>
+
+<h1>Farbpalette · ichbinhierjetzt.ch</h1>
+
+<!-- SWATCHES -->
+<div class="section">
+  <h2>Farben</h2>
+  <div class="swatches">
+    <div class="swatch">
+      <div class="swatch-color" style="background: #1b1b2d;"></div>
+      <div class="swatch-hex">#1b1b2d</div>
+      <div class="swatch-label">Dark / Nacht</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background: #3f3f3f;"></div>
+      <div class="swatch-hex">#3f3f3f</div>
+      <div class="swatch-label">Text / Grau</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background: #bb4d21;"></div>
+      <div class="swatch-hex">#bb4d21</div>
+      <div class="swatch-label">Ember / Tieffeuer</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background: #e7794d;"></div>
+      <div class="swatch-hex">#e7794d</div>
+      <div class="swatch-label">Fire / Akzent</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background: #c9967f; border: 1px solid #b07060;"></div>
+      <div class="swatch-hex">#c9967f</div>
+      <div class="swatch-label">Rose / Background</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background: #f3bdbd;"></div>
+      <div class="swatch-hex">#f3bdbd</div>
+      <div class="swatch-label">Blush / Surface</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background: #fff3f3; border: 1px solid #e8d0d0;"></div>
+      <div class="swatch-hex">#fff3f3</div>
+      <div class="swatch-label">Light / Text hell</div>
+    </div>
+  </div>
+</div>
+
+<!-- GRADIENT -->
+<div class="section">
+  <h2>Verlauf</h2>
+  <div class="gradient-strip"></div>
+</div>
+
+<!-- DEMO CARD -->
+<div class="section">
+  <h2>Anwendungsbeispiel</h2>
+  <div class="demo">
+    <span class="tag">Traumasensibles Coaching</span>
+    <h3>spüre und fühle</h3>
+    <div class="headline">Du bist FEUER</div>
+    <p>... brenne ... lodere ... sprühe ... reinige ... entfalte ... verändere ... tanze ...</p>
+    <div class="btn-row">
+      <a href="#" class="btn-primary">Mehr erfahren</a>
+      <a href="#" class="btn-secondary">Kontakt</a>
+    </div>
+  </div>
+</div>
+
+<!-- CSS VARIABLES -->
+<div class="section">
+  <h2>CSS Variables</h2>
+  <div class="css-block">
+    <span class="key">:root</span> {<br>
+    &nbsp;&nbsp;<span class="prop">--color-dark:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="val">#1b1b2d</span>;<br>
+    &nbsp;&nbsp;<span class="prop">--color-text:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="val">#3f3f3f</span>;<br>
+    &nbsp;&nbsp;<span class="prop">--color-ember:</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="val">#bb4d21</span>;<br>
+    &nbsp;&nbsp;<span class="prop">--color-fire:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="val">#e7794d</span>;<br>
+    &nbsp;&nbsp;<span class="prop">--color-bg:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="val">#c9967f</span>;<br>
+    &nbsp;&nbsp;<span class="prop">--color-surface:</span>&nbsp;&nbsp;<span class="val">#f3bdbd</span>;<br>
+    &nbsp;&nbsp;<span class="prop">--color-light:</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="val">#fff3f3</span>;<br>
+    }
+  </div>
+</div>
+
+</body>
+</html>
