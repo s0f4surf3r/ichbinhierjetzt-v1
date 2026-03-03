@@ -25,4 +25,4 @@ Wir sind ein Wunderund doch nichts Besonderes.
 
 Wir sind einfach da,so wie wir sind.
 
-Menschen halt. 
+Menschen halt.
