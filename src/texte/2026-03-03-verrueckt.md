@@ -7,12 +7,6 @@ type: Gedicht
 heroImage: /images/gemini_generated_image_rg9smprg9smprg9s.jpg
 excerpt: An dem Morgen, an dem ich etwas zur Welt gebracht habe und mich an eine Geburt erinnerte.
 ---
-# Es hat sich etwas verrückt
-
-*Kurzbeschreibung:*  
-An dem Morgen, an dem ich etwas zur Welt gebracht habe und mich an eine Geburt erinnerte.
-
----
 
 Es hat sich etwas verrückt in mir,  
 tief drin.  
