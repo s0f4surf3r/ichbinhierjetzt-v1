@@ -9,11 +9,11 @@ layout: base.njk
   </div>
 </div>
 <article class="page-content page-content--with-hero">
-  {{ content | safe }}
+  <div data-cms-field="body">{{ content | safe }}</div>
 </article>
 {% else %}
 <article class="page-content">
   <h1 class="page-title">{{ title }}</h1>
-  {{ content | safe }}
+  <div data-cms-field="body">{{ content | safe }}</div>
 </article>
 {% endif %}
