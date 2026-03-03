@@ -13,6 +13,8 @@ layout: base.njk
   .text-body { line-height: 2.1; color: var(--color-mid-dark); }
   .text-body p { margin-bottom: 1.4rem; }
   .text-ornament { text-align: center; color: var(--color-warm); opacity: 0.4; letter-spacing: 0.5em; margin: 2.5rem 0; font-size: 0.9rem; }
+  .text-hero-image { margin-top: 3rem; border-radius: 8px; overflow: hidden; }
+  .text-hero-image img { width: 100%; height: auto; display: block; }
 </style>
 
 <article class="text-article">
@@ -25,4 +27,9 @@ layout: base.njk
   {% if excerpt %}<p class="text-excerpt">{{ excerpt }}</p>{% endif %}
   <div class="text-ornament">✦</div>
   <div class="text-body">{{ content | safe }}</div>
+  {% if heroImage %}
+  <div class="text-hero-image">
+    <img src="{{ heroImage }}" alt="{{ title }}">
+  </div>
+  {% endif %}
 </article>
