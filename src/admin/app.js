@@ -7,7 +7,9 @@
   'use strict';
 
   // --- Config ---
-  const API_URL = localStorage.getItem('cms_api_url') || 'https://perfectcmstm6mdmqs-doris-cms-api.functions.fnc.fr-par.scw.cloud';
+  const API_URL = localStorage.getItem('cms_api_url')
+    || document.querySelector('meta[name="cms-api-url"]')?.content
+    || '';
 
   // --- State ---
   let token = localStorage.getItem('cms_token') || null;
