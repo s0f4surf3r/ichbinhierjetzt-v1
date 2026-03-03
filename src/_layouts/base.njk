@@ -135,6 +135,7 @@
     var API = localStorage.getItem('cms_api_url') || 'https://perfectcmstm6mdmqs-doris-cms-api.functions.fnc.fr-par.scw.cloud';
     var PAGE_PATH = document.body.getAttribute('data-cms-path');
     if (!PAGE_PATH) return;
+    if (!document.querySelector('[data-cms-field]')) return;
 
     // Edit-Button
     var btn = document.createElement('button');
