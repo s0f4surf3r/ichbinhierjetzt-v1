@@ -22,6 +22,9 @@
   let hasUnsavedChanges = false;
   let isSaving = false;
 
+  // --- Translation ---
+  const TRANSLATION_LANGS = { en: 'English', fr: 'Français', pt: 'Português', es: 'Español' };
+
   function debounce(fn, ms) {
     let timer;
     return (...args) => { clearTimeout(timer); timer = setTimeout(() => fn(...args), ms); };
@@ -308,6 +311,8 @@
     $('#f-excerpt').value = '';
     $('#f-heroimage').value = '';
     $('#f-draft').checked = true;
+    $('#fields-translation').hidden = false;
+    $('#translation-langs').innerHTML = '';
     initEditor('');
     lastSavedContent = '';
     hasUnsavedChanges = false;
@@ -352,10 +357,14 @@
       $('#f-excerpt').value = frontmatter.excerpt || '';
       $('#f-heroimage').value = frontmatter.heroImage || '';
       $('#f-draft').checked = frontmatter.draft === 'true' || frontmatter.draft === true;
+      // Translation fields
+      $('#fields-translation').hidden = false;
+      renderTranslationFields(frontmatter);
     } else {
       $('#fp-title').value = frontmatter.title || '';
       $('#fp-subtitle').value = frontmatter.subtitle || '';
       $('#fp-description').value = frontmatter.description || '';
+      $('#fields-translation').hidden = true;
     }
 
     // Sections rendern (für Layout-Seiten mit section_* Keys)
@@ -508,6 +517,7 @@
       const excerpt = $('#f-excerpt').value.trim();
       if (heroImage) frontmatter.heroImage = heroImage;
       if (excerpt) frontmatter.excerpt = excerpt;
+      readTranslationFields(frontmatter);
     } else if (currentFile) {
       // Alle originalen Frontmatter-Keys beibehalten (Round-Tripping)
       frontmatter = { ...(currentFile.frontmatter || {}) };
@@ -589,6 +599,7 @@
         if ($('#f-draft').checked) frontmatter.draft = true;
         if (heroImage) frontmatter.heroImage = heroImage;
         if (excerpt) frontmatter.excerpt = excerpt;
+        readTranslationFields(frontmatter);
 
         if (currentFile.isNew) {
           const slug = slugify(title);
@@ -903,6 +914,98 @@
     }
   }
 
+  // --- Translation UI ---
+  function getActiveTranslationLangs() {
+    return Array.from(document.querySelectorAll('.translation-lang')).map(el => el.dataset.lang);
+  }
+
+  function renderTranslationFields(frontmatter) {
+    const container = $('#translation-langs');
+    container.innerHTML = '';
+
+    // Find existing translation languages in frontmatter
+    const langs = new Set();
+    for (const key of Object.keys(frontmatter)) {
+      const m = key.match(/^translation_([a-z]{2})_/);
+      if (m) langs.add(m[1]);
+    }
+
+    for (const lang of langs) {
+      addTranslationLang(lang, frontmatter);
+    }
+  }
+
+  function addTranslationLang(lang, frontmatter) {
+    const container = $('#translation-langs');
+    const label = TRANSLATION_LANGS[lang] || lang.toUpperCase();
+    const div = document.createElement('div');
+    div.className = 'translation-lang';
+    div.dataset.lang = lang;
+    div.innerHTML = `
+      <div class="translation-lang-header">
+        <h4>${escapeHtml(label)}</h4>
+        <button type="button" class="translation-remove" aria-label="${label} entfernen">&times; Entfernen</button>
+      </div>
+      <div class="translation-lang-body">
+        <label for="ft-${lang}-title">Titel</label>
+        <input type="text" id="ft-${lang}-title" value="${escapeHtml((frontmatter && frontmatter['translation_' + lang + '_title']) || '')}">
+        <label for="ft-${lang}-excerpt">Kurzbeschreibung</label>
+        <input type="text" id="ft-${lang}-excerpt" value="${escapeHtml((frontmatter && frontmatter['translation_' + lang + '_excerpt']) || '')}">
+        <label for="ft-${lang}-body">Text (Markdown)</label>
+        <textarea id="ft-${lang}-body">${escapeHtml((frontmatter && frontmatter['translation_' + lang + '_body']) || '')}</textarea>
+      </div>
+    `;
+    container.appendChild(div);
+
+    // Event listeners
+    div.querySelector('.translation-remove').addEventListener('click', () => {
+      div.remove();
+      onContentChange();
+    });
+    div.querySelectorAll('input, textarea').forEach(el => {
+      el.addEventListener('input', onContentChange);
+    });
+  }
+
+  function readTranslationFields(frontmatter) {
+    // Remove old translation keys
+    for (const key of Object.keys(frontmatter)) {
+      if (/^translation_[a-z]{2}_/.test(key)) delete frontmatter[key];
+    }
+    // Add current ones
+    document.querySelectorAll('.translation-lang').forEach(div => {
+      const lang = div.dataset.lang;
+      const title = div.querySelector(`#ft-${lang}-title`).value.trim();
+      const excerpt = div.querySelector(`#ft-${lang}-excerpt`).value.trim();
+      const body = div.querySelector(`#ft-${lang}-body`).value.trim();
+      if (title) frontmatter['translation_' + lang + '_title'] = title;
+      if (excerpt) frontmatter['translation_' + lang + '_excerpt'] = excerpt;
+      if (body) frontmatter['translation_' + lang + '_body'] = body;
+    });
+  }
+
+  // Add Translation button
+  $('#add-translation-btn').addEventListener('click', () => {
+    const existing = getActiveTranslationLangs();
+    const available = Object.entries(TRANSLATION_LANGS).filter(([k]) => !existing.includes(k));
+    if (available.length === 0) return;
+
+    // If only one available, add it directly
+    if (available.length === 1) {
+      addTranslationLang(available[0][0], null);
+      onContentChange();
+      return;
+    }
+
+    // Simple prompt for language selection
+    const choices = available.map(([k, v]) => `${k} = ${v}`).join(', ');
+    const choice = prompt(`Sprache wählen (${choices}):`, available[0][0]);
+    if (choice && TRANSLATION_LANGS[choice] && !existing.includes(choice)) {
+      addTranslationLang(choice, null);
+      onContentChange();
+    }
+  });
+
   // --- Helpers ---
   function slugify(text) {
     return text
@@ -1103,6 +1206,7 @@
       $('#f-excerpt').value = frontmatter.excerpt || '';
       $('#f-heroimage').value = frontmatter.heroImage || '';
       $('#f-draft').checked = frontmatter.draft === 'true' || frontmatter.draft === true;
+      renderTranslationFields(frontmatter);
     } else {
       $('#fp-title').value = frontmatter.title || '';
       $('#fp-subtitle').value = frontmatter.subtitle || '';

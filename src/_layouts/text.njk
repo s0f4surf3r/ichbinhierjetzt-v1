@@ -15,21 +15,67 @@ layout: base.njk
   .text-ornament { text-align: center; color: var(--color-warm); opacity: 0.4; letter-spacing: 0.5em; margin: 2.5rem 0; font-size: 0.9rem; }
   .text-hero-image { margin-top: 3rem; border-radius: 8px; overflow: hidden; }
   .text-hero-image img { width: 100%; height: auto; display: block; }
+  .text-lang-switch { display: flex; gap: 8px; margin-bottom: 1.5rem; }
+  .text-lang-btn { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.3rem 0.8rem; border-radius: 100px; border: 1.5px solid var(--color-warm); background: transparent; color: var(--color-warm); cursor: pointer; font-family: var(--font-body); transition: background 0.2s, color 0.2s; min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+  .text-lang-btn:hover { background: var(--color-warm); color: var(--color-bg-light); }
+  .text-lang-btn.active { background: var(--color-warm); color: var(--color-bg-light); }
+  .text-lang-btn:focus-visible { outline: 2px solid var(--color-fire); outline-offset: 2px; }
 </style>
 
 <article class="text-article">
-  <a href="/texte/" class="text-back">← Texte</a>
+  <a href="/texte/" class="text-back">&larr; Texte</a>
   <div class="text-meta">
     <span class="text-type">{{ type }}</span>
     <span class="text-date">{{ date | readableDate }}</span>
   </div>
-  <h1 class="text-title">{{ title }}</h1>
-  {% if excerpt %}<p class="text-excerpt">{{ excerpt }}</p>{% endif %}
-  <div class="text-ornament">✦</div>
-  <div class="text-body">{{ content | safe }}</div>
+
+  {% if translation_en_body %}
+  <div class="text-lang-switch" role="group" aria-label="Sprache wählen">
+    <button class="text-lang-btn active" data-lang="de" aria-pressed="true">DE</button>
+    <button class="text-lang-btn" data-lang="en" aria-pressed="false">EN</button>
+  </div>
+  {% endif %}
+
+  <h1 class="text-title" data-lang-de="{{ title }}" data-lang-en="{{ translation_en_title or title }}">{{ title }}</h1>
+
+  {% if excerpt %}
+  <p class="text-excerpt" data-lang-de="{{ excerpt }}" data-lang-en="{{ translation_en_excerpt or excerpt }}">{{ excerpt }}</p>
+  {% endif %}
+
+  <div class="text-ornament">&#10022;</div>
+
+  <div class="text-body" data-lang-de>{{ content | safe }}</div>
+  {% if translation_en_body %}
+  <div class="text-body" data-lang-en hidden>{{ translation_en_body | markdownify | safe }}</div>
+  {% endif %}
+
   {% if heroImage %}
   <div class="text-hero-image">
     <img src="{{ heroImage }}" alt="{{ title }}">
   </div>
   {% endif %}
 </article>
+
+{% if translation_en_body %}
+<script>
+(function() {
+  var btns = document.querySelectorAll('.text-lang-btn');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var lang = btn.dataset.lang;
+      btns.forEach(function(b) {
+        b.classList.toggle('active', b.dataset.lang === lang);
+        b.setAttribute('aria-pressed', b.dataset.lang === lang);
+      });
+      // Switch title + excerpt
+      document.querySelectorAll('[data-lang-de][data-lang-en]').forEach(function(el) {
+        el.textContent = el.getAttribute('data-lang-' + lang);
+      });
+      // Switch body
+      document.querySelectorAll('.text-body[data-lang-de]').forEach(function(el) { el.hidden = lang !== 'de'; });
+      document.querySelectorAll('.text-body[data-lang-en]').forEach(function(el) { el.hidden = lang !== 'en'; });
+    });
+  });
+})();
+</script>
+{% endif %}

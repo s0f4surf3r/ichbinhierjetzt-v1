@@ -18,6 +18,11 @@ module.exports = function (eleventyConfig) {
     return new Date().getFullYear();
   });
 
+  eleventyConfig.addFilter("markdownify", (str) => {
+    if (!str) return "";
+    return md.render(str);
+  });
+
   // Texte Collection
   eleventyConfig.addCollection("texte", function(collectionApi) {
     return collectionApi.getFilteredByGlob("src/texte/*.md").sort((a, b) => b.date - a.date);

@@ -14,6 +14,17 @@
     .mode-btn { background:transparent; border:none; padding:0.3rem 1rem; border-radius:4px; cursor:pointer; font-size:0.82rem; color:var(--text-secondary,#888); font-family:sans-serif; transition:all 0.15s; }
     .mode-btn.active { background:var(--bg-card,#2a2826); color:var(--text-primary,#f5f0eb); box-shadow:0 1px 3px rgba(0,0,0,0.3); }
     .mode-btn:hover:not(.active) { color:var(--text-primary,#f5f0eb); }
+    .translation-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:0.8rem; }
+    .translation-title { font-size:0.95rem; color:var(--text-secondary,#888); margin:0; font-weight:400; }
+    .translation-lang { border:1px solid var(--border,#333); border-radius:8px; padding:1rem; margin-bottom:0.8rem; }
+    .translation-lang-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:0.6rem; cursor:pointer; }
+    .translation-lang-header h4 { font-size:0.85rem; color:var(--text-primary,#f5f0eb); margin:0; font-weight:500; }
+    .translation-lang-body { display:grid; gap:0.5rem; }
+    .translation-lang-body label { font-size:0.8rem; color:var(--text-secondary,#888); }
+    .translation-lang-body input, .translation-lang-body textarea { width:100%; }
+    .translation-lang-body textarea { min-height:120px; font-family:monospace; font-size:0.85rem; resize:vertical; }
+    .translation-remove { background:none; border:none; color:var(--danger,#e74c3c); cursor:pointer; font-size:0.8rem; padding:0.2rem 0.5rem; }
+    .translation-remove:hover { text-decoration:underline; }
   </style>
 </head>
 <body>
@@ -126,6 +137,15 @@
           <input type="checkbox" id="f-draft">
           <span>Entwurf — nicht veröffentlicht</span>
         </label>
+      </div>
+
+      <!-- Übersetzungen (nur bei Texten) -->
+      <div id="fields-translation" class="fields" hidden>
+        <div class="translation-header">
+          <h3 class="translation-title">Übersetzungen</h3>
+          <button type="button" id="add-translation-btn" class="btn btn-ghost btn-sm">+ Übersetzung</button>
+        </div>
+        <div id="translation-langs"></div>
       </div>
 
       <!-- Frontmatter-Felder (Seiten) -->
