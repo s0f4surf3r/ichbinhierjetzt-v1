@@ -95,6 +95,10 @@
   --el-erde-name:   #7a6040;
 }
 
+[data-theme="rose"] .hero-bg {
+  background-image: url('/images/hero-rose.webp') !important;
+}
+
 /* === Reset === */
 *, *::before, *::after {
   margin: 0;
