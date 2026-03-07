@@ -14,8 +14,8 @@ layout: base.njk
   .text-ornament { text-align: center; color: var(--color-warm); opacity: 0.4; letter-spacing: 0.5em; margin: 2.5rem 0; font-size: 0.9rem; }
   .text-hero-image { margin-top: 3rem; border-radius: 8px; overflow: hidden; }
   .text-hero-image img { width: 100%; height: auto; display: block; }
-  .text-lang-switch { display: flex; gap: 8px; margin-bottom: 1.5rem; }
-  .text-lang-btn { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.3rem 0.8rem; border-radius: 100px; border: 1.5px solid var(--color-warm); background: transparent; color: var(--color-warm); cursor: pointer; font-family: var(--font-body); transition: background 0.2s, color 0.2s; min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+  .text-lang-switch { display: flex; gap: 6px; margin-left: auto; }
+  .text-lang-btn { font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.25rem 0.6rem; border-radius: 100px; border: 1px solid var(--color-warm); background: transparent; color: var(--color-warm); cursor: pointer; font-family: var(--font-body); transition: background 0.2s, color 0.2s; min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
   .text-lang-btn:hover { background: var(--color-warm); color: var(--color-bg-light); }
   .text-lang-btn.active { background: var(--color-warm); color: var(--color-bg-light); }
   .text-lang-btn:focus-visible { outline: 2px solid var(--color-fire); outline-offset: 2px; }
@@ -26,14 +26,13 @@ layout: base.njk
   <div class="text-meta">
     <span class="text-type">{{ type }}</span>
     <span class="text-date">{{ date | readableDate }}</span>
+    {% if translation_en_body %}
+    <div class="text-lang-switch" role="group" aria-label="Sprache wählen">
+      <button class="text-lang-btn active" data-lang="de" aria-pressed="true">DE</button>
+      <button class="text-lang-btn" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    {% endif %}
   </div>
-
-  {% if translation_en_body %}
-  <div class="text-lang-switch" role="group" aria-label="Sprache wählen">
-    <button class="text-lang-btn active" data-lang="de" aria-pressed="true">DE</button>
-    <button class="text-lang-btn" data-lang="en" aria-pressed="false">EN</button>
-  </div>
-  {% endif %}
 
   <h1 class="text-title" data-lang-de="{{ title }}" data-lang-en="{{ translation_en_title or title }}">{{ title }}</h1>
 
