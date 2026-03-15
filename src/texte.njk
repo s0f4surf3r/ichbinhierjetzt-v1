@@ -24,8 +24,10 @@ description: Gedanken, Gedichte und Impulse von Doris R. Mumenthaler
 </div>
 <div class="texte-ornament">✦ ✦ ✦</div>
 
+{% if collections.texte | length > 0 %}
 <ul class="texte-list">
   {% for item in collections.texte %}
+  {% if not item.data.draft %}
   <li class="texte-item">
     <a href="{{ item.url }}">
       <div class="texte-item-type">{{ item.data.type }}</div>
@@ -36,5 +38,9 @@ description: Gedanken, Gedichte und Impulse von Doris R. Mumenthaler
       {% endif %}
     </a>
   </li>
+  {% endif %}
   {% endfor %}
 </ul>
+{% else %}
+<p style="text-align:center; padding:3rem var(--gutter); color:var(--color-mid-dark); font-style:italic;">Noch keine Texte veröffentlicht.</p>
+{% endif %}
